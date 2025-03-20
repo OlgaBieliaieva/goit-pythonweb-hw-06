@@ -1,0 +1,30 @@
+1. Create repository
+2. Clone repository
+3. Terminal:
+    poetry init
+    poetry add sqlalchemy psycopg2 faker alembic python-dotenv
+4. Create .env:
+    USER=<postgres username>
+    PASSWORD=<postgres password>
+    DB_NAME=<postgres db name>
+    HOST=localhost
+    PORT=5432
+5. Terminal:
+    docker run --name <postgres db name> -p 5432:5432 -e POSTGRES_PASSWORD=<postgres password> -d postgres
+6. Terminal:
+    poetry env activate
+7. Create db connection in conf/db.py
+8. Create models in models/models.py
+9. Create migrations from terminal:
+    poetry run alembic init migrations
+10. Create db in DBeaver from terminal:
+    docker exec -it hw-06_db psql -U postgres
+    postgres=# CREATE DATABASE "hw-06_db"
+11. Setup Alembic in migrations/env.py
+12. Create migration from terminal
+    poetry run alembic revision --autogenerate -m "Initial migration"
+13. Apply migration from terminal
+    poetry run alembic upgrade head
+14. Create seed.py
+15. Seed database from terminal:
+    poetry run python seed.py
